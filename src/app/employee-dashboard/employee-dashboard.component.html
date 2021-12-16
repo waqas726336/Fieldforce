@@ -5,9 +5,7 @@
         <h1 style="color: aliceblue;">Contact Book System</h1>
         <div class="d-flex">
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-dark" type="submit">Search</button>
-                <!-- <input type="text" [(ngModel)]="email" placeholder="Serach any fields"/>   -->
+                <input class="form-control me-2" [(ngModel)] = "searchValue" [ngModelOptions]="{standalone: true}" type="text" placeholder="Search" aria-label="Search" (keyup)="searchfunction($event)">
             </form>
             <button class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 (click)="showAdd()">Add Contact</button>
@@ -40,13 +38,17 @@
             <td>
                 <button type="button" class="btn btn-info cust_marg mx-2" data-bs-toggle="modal"
                     data-bs-target="#exampleModal" (click)="editEmployeeData(empdata)">Update</button>
+
                 <button type="button" class="btn btn-danger cust_marg mx-2" (click)="deleteEmployeeData(empdata)">Delete
                 </button> 
-                <button type="button" class="btn btn-warning cust_marg mx-2" >View</button>
+
+                <button type="button" class="btn btn-warning cust_marg mx-2" data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                (click)="ViewEmployeeData(empdata)">View</button>
                 
             </td>
         </tr>
-
+     
 
     </tbody>
 </table>
@@ -65,7 +67,7 @@
                     <div class="mb-3">
                         <label for="InputFname"   class="form-label">First Name</label>
                         <input type="text" formControlName="firstName"  class="form-control" id="InputFname"
-                            aria-describedby="FnameHelp"   >
+                            aria-describedby="FnameHelp"    >
                     </div>
 
                     <span style="color: red;" *ngIf="firstnamegetter && firstnamegetter.invalid && firstnamegetter.touched"
@@ -91,7 +93,7 @@
                   >
                     <div class="mb-3">
                         <label for="InputMobile" class="form-label">Mobile Number</label>
-                        <input type="number" formControlName="mobile" class="form-control"  id="InputMobile"
+                        <input type="number" formControlName="mobile" class="form-control" required maxlength="11" id="InputMobile"
                             aria-describedby="MobileHelp" >
                     </div>
                     <span style="color: red;" *ngIf="mobilegetter && mobilegetter.invalid && mobilegetter.touched"
@@ -99,7 +101,7 @@
                   >
                    
                     <div>
-                        <form [formGroup]="userForm">
+                        <form [formGroup]="userForm" >
                             <div formArrayName='users' fxLayout="column" fxLayoutGap="10px">
                              
                               <div *ngFor="let user of userForm.get('users')['controls']; let i = index" fxLayout="row" fxLayoutGap="10px">
@@ -144,3 +146,44 @@
     </div>
 </div>
 
+  
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">View Contact Info</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <form [formGroup]="formView" >
+<div>
+    
+    <label id="nameview">name is :</label>
+</div>
+<div>
+
+    <label formControlName="mobileview">number is:</label>
+</div>
+<div>
+
+    <label formControlName="emailview">name is :</label>
+</div>
+    <div>
+        <label formControlName="addressview">name is :</label>
+
+    </div>         
+<div>
+    <label formControlName="dobview">name is :</label>
+
+</div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> -->

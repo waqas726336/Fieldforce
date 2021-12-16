@@ -14,16 +14,20 @@ import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashbo
 
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeDashboardComponent ],
+    EmployeeDashboardComponent,
+     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastModule, FormsModule,
+    ToastModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

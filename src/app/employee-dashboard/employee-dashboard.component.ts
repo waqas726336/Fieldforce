@@ -14,12 +14,17 @@ import { FormArray, FormControl } from '@angular/forms';
 export class EmployeeDashboardComponent implements OnInit {
 
 
+  contactname:any
   hideAdd:boolean=false;
   hideUpdate:boolean=true;
   formvalue !:FormGroup;
-  employeeData:any;
+  employeeData: EmployeeModel[] = [];
+  employeeDataBackup: EmployeeModel[] = [];
+  viewcontactdata:any;
   EmployeemodelObj:EmployeeModel = new EmployeeModel()
   userForm:any;
+  formView: any;
+  searchValue: string = ""
   
   constructor(private formbuild:FormBuilder , private _api:ApiService,private messageService: MessageService) { }
 
@@ -33,17 +38,18 @@ export class EmployeeDashboardComponent implements OnInit {
     this.addUser();
     this.formvalue=this.formbuild.group({
 
-      firstName:[''],
-      lastName:[''],
-      email:[''],
-      mobile:[''],
-      DOB:[''],
+      firstName:['', Validators.required],
+      lastName:['',Validators.required],
+      email:['',Validators.required],
+      mobile:['',Validators.required],
+      DOB:['',Validators.required],
       i:[''],
-      address:['']
+      address:['',Validators.required]
 
- 
+    
     
   })
+
 
     this.getEmployeeData();
 
@@ -77,8 +83,9 @@ export class EmployeeDashboardComponent implements OnInit {
   getEmployeeData()
   {
     this._api.getEmployee().subscribe(res=>{
-       this.employeeData=res;
-       
+       this.employeeData=res;  
+       this.employeeDataBackup = res;
+       console.log(res);     
     })
   }
   deleteEmployeeData(empdata:any)
@@ -103,6 +110,20 @@ export class EmployeeDashboardComponent implements OnInit {
     this.userForm.controls['i'].setValue(row.users);
     this.formvalue.controls['DOB'].setValue(row.DOB);
     this.formvalue.controls['address'].setValue(row.address);
+  }
+  ViewEmployeeData(row:any){
+    
+    this.hideAdd = true; 
+    this.hideUpdate=true;
+    this.EmployeemodelObj.id=row.id;
+    this.formvalue.controls['firstName'].setValue(row.firstName);
+    this.formvalue.controls['lastName'].setValue(row.lastName);
+    this.formvalue.controls['email'].setValue(row.email);
+    this.formvalue.controls['mobile'].setValue(row.mobile);
+    this.formvalue.controls['DOB'].setValue(row.DOB);
+    this.formvalue.controls['address'].setValue(row.address);
+    this.userForm.controls['i'].setValue(row.users);
+ 
   }
   UpdateEmployeeDetails()
   {
@@ -155,5 +176,20 @@ export class EmployeeDashboardComponent implements OnInit {
   get addressgetter(){
 
     return this.formvalue.get('address')
+  }
+  searchfunction(event: any)
+  {
+    console.log(event);
+    console.log(this.searchValue);
+    this.employeeData = this.employeeData.filter(empData => empData.firstName.includes(this.searchValue)||empData.lastName.includes(this.searchValue)||empData.email.includes(this.searchValue));
+    
+    if(this.searchValue.length == 0) {
+      this.employeeData = this.employeeDataBackup;
+    }
+    if(event.keycode ==8){
+
+      this.employeeData = this.employeeDataBackup;
+
+    }
   }
 }
