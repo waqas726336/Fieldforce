@@ -23,6 +23,15 @@ export class ApiService {
    {
      return res;
    }));
+   
+  }
+  viewEmp()
+  {
+   return this._http.get<any>("http://localhost:3000/posts").pipe(map((res:any)=>
+   {
+     return res;
+   }));
+   
   }
   updateEmployee(id:number,data:any)
   {

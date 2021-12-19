@@ -107,23 +107,22 @@ export class EmployeeDashboardComponent implements OnInit {
     this.formvalue.controls['lastName'].setValue(row.lastName);
     this.formvalue.controls['email'].setValue(row.email);
     this.formvalue.controls['mobile'].setValue(row.mobile);
-    this.userForm.controls['i'].setValue(row.users);
     this.formvalue.controls['DOB'].setValue(row.DOB);
     this.formvalue.controls['address'].setValue(row.address);
+    this.userForm.controls['i'].setValue(row.users);
   }
-  ViewEmployeeData(row:any){
-    
+  showEmployeeData(row:any){
     this.hideAdd = true; 
-    this.hideUpdate=true;
+    this.hideUpdate=false;
     this.EmployeemodelObj.id=row.id;
     this.formvalue.controls['firstName'].setValue(row.firstName);
     this.formvalue.controls['lastName'].setValue(row.lastName);
     this.formvalue.controls['email'].setValue(row.email);
-    this.formvalue.controls['mobile'].setValue(row.mobile);
     this.formvalue.controls['DOB'].setValue(row.DOB);
     this.formvalue.controls['address'].setValue(row.address);
+    this.formvalue.controls['mobile'].setValue(row.mobile);
     this.userForm.controls['i'].setValue(row.users);
- 
+    console.log("show data",row.firstName)
   }
   UpdateEmployeeDetails()
   {

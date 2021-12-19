@@ -1,16 +1,6 @@
 {
   "posts": [
     {
-      "id": 4,
-      "firstName": "Hafiz ateeb",
-      "lastName": "rasheed",
-      "email": "ateeb@gmail.com",
-      "mobile": 3066922077,
-      "address": "renala",
-      "i": [],
-      "DOB": "2021-12-14"
-    },
-    {
       "id": 10,
       "firstName": "waqas",
       "lastName": "ahmed",
@@ -30,16 +20,6 @@
       "i": [
         "03124334016"
       ],
-      "DOB": "2021-12-14"
-    },
-    {
-      "id": 12,
-      "firstName": "we",
-      "lastName": "ahmed",
-      "email": "waqas@gmail.com",
-      "mobile": 2316548989,
-      "address": "lahore",
-      "i": [],
       "DOB": "2021-12-14"
     }
   ]

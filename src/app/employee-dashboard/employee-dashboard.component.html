@@ -25,7 +25,8 @@
             <th scope="col">Action</th>
         </tr>
     </thead>
-    <tbody>
+    <!-- test -->
+    <tbody> 
         <tr *ngFor="let empdata of employeeData">
 
             <td>{{empdata.id}}</td>
@@ -42,9 +43,8 @@
                 <button type="button" class="btn btn-danger cust_marg mx-2" (click)="deleteEmployeeData(empdata)">Delete
                 </button> 
 
-                <button type="button" class="btn btn-warning cust_marg mx-2" data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                (click)="ViewEmployeeData(empdata)">View</button>
+                <button type="button" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="showEmployeeData(empdata)" 
+               >View</button>
                 
             </td>
         </tr>
@@ -148,42 +148,30 @@
 
   
   <!-- Modal -->
-  <!-- <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">View Contact Info</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">View Contact Info</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
+        
         <div class="modal-body">
-            <form [formGroup]="formView" >
-<div>
-    
-    <label id="nameview">name is :</label>
-</div>
-<div>
-
-    <label formControlName="mobileview">number is:</label>
-</div>
-<div>
-
-    <label formControlName="emailview">name is :</label>
-</div>
-    <div>
-        <label formControlName="addressview">name is :</label>
-
-    </div>         
-<div>
-    <label formControlName="dobview">name is :</label>
-
-</div>
-
+            <form [formGroup]="formvalue">
+                First Name: <input type="text" formControlName="firstName" style="border: 0;"> <br>
+                Last Name: <input type="text" formControlName="lastName" style="border: 0;"><br>
+                Email: <input type="text"  formControlName="email" style="border: 0;"><br>
+                Date of Birth: <input type="text"  formControlName="DOB" style="border: 0;"><br>
+                address is: <input type="text"  formControlName="address" style="border: 0;"><br>
+                Number is: <input type="text"  formControlName="mobile" style="border: 0;"><br>
+                <input type="text"  formControlName="i" style="border: 0;">
             </form>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
